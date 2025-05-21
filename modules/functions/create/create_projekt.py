@@ -1,10 +1,10 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,15 +26,15 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
 
 # File Name:        create_logik_projekt.py
-# Version:          1.9.9
+# Version:          2.0.0
 # Created:          2024-01-19
-# Modified:         2024-12-25
+# Modified:         2024-12-31
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..',
             )
         )
-    
+
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -88,6 +88,7 @@ def get_resource_path(relative_path):
 modules_dir = get_resource_path('modules')
 # Set the path to the 'resources' directory
 resources_dir = get_resource_path('resources')
+
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
@@ -142,167 +143,174 @@ from functions.shell.shell_decorators import (
 
 # Import the shell utility functions
 from functions.shell.shell_utilities import (
-    TimestampUtility
+    TimestampUtility,
 )
 
 # Import the shell logging functions
 from functions.shell.shell_logging import (
-    ShellLogger
+    ShellLogger,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the create_xml_file function
 from functions.create.create_parameters_xml import (
-    create_xml_file
+    create_xml_file_legacy,
+    create_xml_file,
 )
 
 # Import the run_wiretap_create_node function
 from functions.wiretap.wiretap_create_node import (
-    run_wiretap_create_node
+    run_wiretap_create_node_legacy,
+    run_wiretap_create_node,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the create_projekt_dirs function
 from functions.create.create_projekt_dirs import (
-    create_the_projekt_directories
+    create_the_projekt_directories,
 )
 
 # Import the create_the_projekt_flame_directories function
 from functions.create.create_projekt_flame_dirs import (
-    create_the_projekt_flame_directories
+    create_the_projekt_flame_directories,
 )
 
 # Import the symlink_iterations_dir function
 from functions.link.link_iterations_dir import (
-    symlink_iterations_dir
+    symlink_iterations_dir,
 )
 
 # Import the symlink_subdirectories function
 from functions.link.link_subdirectories import (
-    symlink_subdirectories
+    symlink_subdirectories,
 )
 
 # Import the template_directory_path for init_configs
 from widgets.combo_box.items_init_config import (
-    template_directory_path
+    template_directory_path,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the sync_archive_prefs function
 from functions.synchronize.sync_archive_prefs import (
-    sync_archive_prefs
+    sync_archive_prefs,
 )
 
 # Import the sync_batch_project_bins function
 from functions.synchronize.sync_batch import (
-    sync_batch_project_bins
+    sync_batch_project_bins,
 )
 
 # Import the update_flame_colortoolkit_bookmarks function
 from functions.update.update_flame_colortoolkit_bookmarks import (
-    update_flame_colortoolkit_bookmarks
+    update_flame_colortoolkit_bookmarks,
 )
 
 # Import the sync_bookmarks function
 from functions.synchronize.sync_bookmarks import (
-    sync_bookmarks
+    sync_bookmarks,
 )
 
 # Import the sync_overlays function
 from functions.synchronize.sync_burnmetadata import (
-    sync_overlays
+    sync_overlays,
 )
 
 # Import the sync_io_presets function
 from functions.synchronize.sync_io import (
-    sync_io_presets
+    sync_io_presets,
 )
 
 # Import the sync_media_import_rules function
 from functions.synchronize.sync_media_import import (
-    sync_media_import_rules
+    sync_media_import_rules,
 )
 
 # Import the sync_mediahub_rules function
 from functions.synchronize.sync_mediahub import (
-    sync_mediahub_rules
+    sync_mediahub_rules,
 )
 
 # Import the sync_mediaimport_rules function
 from functions.synchronize.sync_mediaImport import (
-    sync_mediaimport_rules
+    sync_mediaimport_rules,
 )
 
 # Import the sync_nuke_dirs function
 from functions.synchronize.sync_nuke_dirs import (
-    sync_nuke_dirs
+    sync_nuke_dirs,
 )
 
 # # Import the sync_overlays function  # DIFFERENT TO BURNIN METADATA OVERLAYS
 # from functions.synchronize.sync_overlays import (
-#     sync_overlays
+#     sync_overlays,
 # )
 
 # Import the sync_editorial_tree_premiere function
 from functions.synchronize.sync_editorial_tree_premiere import (
-    sync_editorial_tree_premiere
+    sync_editorial_tree_premiere,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the sync_python_scripts function
 from functions.synchronize.sync_python import (
-    sync_python_scripts
+    sync_python_scripts,
 )
 
 # Import the sync_color_policies function
 from functions.synchronize.sync_syncolor_policies import (
-    sync_color_policies
+    sync_color_policies,
 )
 
 # Import the sync_color_transforms function
 from functions.synchronize.sync_syncolor_transforms import (
-    sync_color_transforms
+    sync_color_transforms,
 )
 
 # Import the add_syncolor_policy function
 from functions.wiretap.wiretap_add_color_policy import (
-    add_syncolor_policy
+    add_syncolor_policy,
+)
+
+# Import the sync_ocio_configs function
+from functions.synchronize.sync_ocio_configs import (
+    sync_ocio_configs,
 )
 
 # Import the add_syncolor_policy function
 from functions.create.create_launcher_script import (
-    create_projekt_flame_launcher_script
+    create_projekt_flame_launcher_script,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the create_projekt_flame_archive_script function
 from functions.create.create_archive_script import (
-    create_projekt_flame_archive_script
+    create_projekt_flame_archive_script,
 )
 
 # Import the create_projekt_backup_script function
 from functions.create.create_backup_script import (
-    create_projekt_backup_script
+    create_projekt_backup_script,
 )
 
 # Import the backup_projekt_template function
 from functions.backup.backup_projekt_template import (
-    backup_projekt_template
+    backup_projekt_template,
 )
 
 # Import the backup_projekt_parameters_xml function
 from functions.backup.backup_projekt_parameters import (
-    backup_projekt_parameters_xml
+    backup_projekt_parameters_xml,
 )
 
 # Import the backup_projekt_creation_log function
 from functions.backup.backup_creation_log import (
-    backup_projekt_creation_log
+    backup_projekt_creation_log,
 )
 
 # ========================================================================== #
@@ -459,14 +467,27 @@ def main():
         the_projekt_dir = the_projekt_information.get('the_projekt_name')
         the_projekt_flame_dir = the_projekt_information.get('the_projekt_flame_name')
 
-        # Define the projekt flame setups directory based on the flame version
-        if the_sanitized_version.startswith("2025"):
-            the_projekt_flame_setups_dir = the_projekt_flame_dir
-        else:
-            the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, 'setups')
+        # # Define the projekt flame setups directory for flame 2025
+        # the_projekt_flame_setups_dir = the_projekt_flame_dir
 
-        # the_projekt_flame_setups_dir = the_projekt_flame_dir  # Disable for flame 2025
-        # the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, 'setups')  # Enable for flame 2026
+        # ----------- ENABLE THIS FUNCTION FOR FLAME 2026 ------------------ #
+
+        # Define the projekt flame setups directory for flame 202
+        the_projekt_flame_setups_dir = os.path.join(
+            the_projekt_flame_dir,
+            'setups'
+        )
+
+        # # Define the projekt flame setups directory based on the flame version
+        # if the_sanitized_version.startswith("2025"):
+        #     the_projekt_flame_setups_dir = the_projekt_flame_dir
+        # else:
+        #     the_projekt_flame_setups_dir = os.path.join(
+        #         the_projekt_flame_dir,
+        #         'setups'
+        #     )
+
+        # ------------------------------------------------------------------ #
 
         bookmarks_file = 'resources/tmp/current_projekt_bookmarks.json'
         tmp_bookmarks_file = 'resources/tmp/tmp_bookmarks.json'
@@ -516,8 +537,42 @@ def main():
         # Print a banner head
         logger.log_and_print(f"{banner_head('Creating Projekt XML File')}")
 
-        # Call the create_xml_file function
-        create_xml_file(the_projekt_information, projekt_xml_path, logger)
+        # # Call the create_xml_file_legacy function for flame 2025
+        # create_xml_file_legacy(
+        #     the_projekt_information,
+        #     projekt_xml_path,
+        #     logger
+        # )
+
+        # Call the create_xml_file function for flame 2026
+        create_xml_file(
+            the_projekt_information,
+            projekt_xml_path,
+            logger
+        )
+
+        # ----------- ENABLE THIS FUNCTION FOR FLAME 2026 ------------------ #
+
+        # # Call the create_xml_file function based on the flame version
+        # if the_sanitized_version.startswith("2025"):
+
+        #     # Call the create_xml_file_legacy function for flame 2025
+        #     create_xml_file_legacy(
+        #         the_projekt_information,
+        #         projekt_xml_path,
+        #         logger
+        #     )
+
+        # else:
+
+        #     # Call the create_xml_file function
+        #     create_xml_file(
+        #         the_projekt_information,
+        #         projekt_xml_path,
+        #         logger
+        #     )
+
+        # ------------------------------------------------------------------ #
 
         # Print a separator
         logger.log_and_print(f"\n{separator}")
@@ -527,8 +582,42 @@ def main():
         # Print a banner head
         logger.log_and_print(f"{banner_head('Creating Flame Projekt')}")
 
-        # Call the run_wiretap_create_node function
-        run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
+        # # Call the run_wiretap_create_node_legacy function for flame 2025
+        # run_wiretap_create_node_legacy(
+        #     the_projekt_flame_name,
+        #     projekt_xml_path,
+        #     separator
+        # )
+
+        # Call the run_wiretap_create_node function for flame 2026
+        run_wiretap_create_node(
+            the_projekt_flame_name,
+            projekt_xml_path,
+            separator
+        )
+
+        # ----------- ENABLE THIS FUNCTION FOR FLAME 2026 ------------------ #
+
+        # # Call the run_wiretap_create_node function based on the flame version
+        # if the_sanitized_version.startswith("2025"):
+
+        #     # Call the run_wiretap_create_node_legacy function
+        #     run_wiretap_create_node_legacy(
+        #         the_projekt_flame_name,
+        #         projekt_xml_path,
+        #         separator
+        #     )
+
+        # else:
+
+        #     # Call the run_wiretap_create_node function
+        #     run_wiretap_create_node(
+        #         the_projekt_flame_name,
+        #         projekt_xml_path,
+        #         separator
+        #     )
+
+        # ------------------------------------------------------------------ #
 
         # Print a separator
         logger.log_and_print(f"\n{separator}")
@@ -543,7 +632,7 @@ def main():
             the_projekts_dir,
             the_projekt_name,
             the_projekt_flame_dir,
-            # the_sanitized_version,
+            the_sanitized_version,
             bookmarks_file,
             tmp_bookmarks_file,
             the_projekt_dirs_json_dir,
@@ -876,31 +965,6 @@ def main():
         # Print a banner head
         logger.log_and_print(f"{banner_head('Creating Editorial Structure - Premiere')}")
 
-        # # # Function to create editorial directory structure - premiere
-        # # sync_editorial_tree_premiere(
-        # #     the_projekts_dir,
-        # #     the_projekt_flame_dirs,
-        # #     the_adsk_dir,
-        # #     the_adsk_dir_linux,
-        # #     the_adsk_dir_macos,
-        # #     the_projekt_name,
-        # #     the_projekt_flame_name,
-        # #     separator
-        # # )
-
-        # # Function to create editorial directory structure - premiere
-        # sync_editorial_tree_premiere(
-        #     the_projekts_dir,
-        #     the_projekt_name,
-        #     the_projekt_flame_name,
-        #     separator
-        # )
-
-        # # Print a separator
-        # logger.log_and_print(f"\n{separator}")
-
-        # # # ------------------------------------------------------------------ #
-
         # Function to create editorial directory structure - premiere
         sync_editorial_tree_premiere(
             the_hostname,
@@ -992,16 +1056,16 @@ def main():
         logger.log_and_print(f"\n{separator}")
 
         # ------------------------------------------------------------------ #
-        # DISABLE THIS SECTION FOR 2026 (OCIO)
-        # Print a banner head
-        logger.log_and_print(f"{banner_head('Add Syncolor Policy')}")  # DISABLE FOR 2026
 
-        # Function to add_syncolor_policy  # DISABLE FOR 2026
-        add_syncolor_policy(
-            the_projekt_color_science,
-            the_projekt_flame_name,
-            separator,
-        )
+        # # Print a banner head
+        # logger.log_and_print(f"{banner_head('Add Syncolor Policy')}")
+
+        # # Function to add_syncolor_policy
+        # add_syncolor_policy(
+        #     the_projekt_color_science,
+        #     the_projekt_flame_name,
+        #     separator,
+        # )
 
         # ------------------------------------------------------------------ #
 
@@ -1152,10 +1216,10 @@ if __name__ == "__main__":
     main()
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
@@ -1182,7 +1246,11 @@ if __name__ == "__main__":
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
-# Version:          1.9.9
-# modified:         2024-12-25 - 09:50:13
+# version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+# version:          2.0.0
+# modified:         2024-12-31 - 10:35:29
+# comments:         Improved legibility and minor modifications
 # -------------------------------------------------------------------------- #

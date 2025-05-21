@@ -1,0 +1,32 @@
+Autodesk Services
+
+Protocol     Port/Range    F*    B*    PS*    Name                           Configuration                                          Notes                          
+
+TCP          3226-3233     x     x            Backburner Server 7-0          /opt/Autodesk/backburner/Network-#/backburner.xml                                     
+TCP & UDP    3234          x           x      Backburner Manager             /opt/Autodesk/backburner/Network/backburner.xml                                       
+UDP          30000         x           x      Backburner Manager                                                                                                   
+TCP          7347          x           x      Backburner Manager (nodes)     /opt/Autodesk/backburner/cfg/wiretap.cfg                                              
+TCP          7348          x           x      Backburner Manager (data)      /opt/Autodesk/backburner/cfg/wiretap.cfg                                              
+
+TCP          7000          x           x      S+W Server                     /opt/Autodesk/sw/cfg/sw_serverd.cfg                    Pre-2026 only                  
+TCP          7001          x     x     x      S+W Probed                     /opt/Autodesk/sw/cfg/sw_probed.cfg                     Pre-2026 backward compatibility
+UDP          7001          x     x     x      S+W Probed Multicast           /opt/Autodesk/sw/cfg/sw_probed.cfg                     Pre-2026 backward compatibility
+TCP          7261                             S+W DB Daemon (sw_dbd)         /opt/Autodesk/sw/cfg/sw_dbd.cfg                        Pre-2026 only, local           
+TCP          7428          x           x      S+W Bandwidth Manager          /opt/Autodesk/sw/cfg/sw_bwmgr.cfg                      Pre-2026 only                  
+TCP          8244          x           x      S+W Priority Locking                                                                                                 
+
+TCP          7549          x           x      IFFFS Wiretap Server (nodes)   /opt/Autodesk/wiretap/cfg/wiretapd.cfg                                                
+TCP          7550          x                  IFFFS Wiretap Server (data)    /opt/Autodesk/wiretap/cfg/wiretapd.cfg                                                
+
+TCP          7183          x                  Wiretap Gateway (nodes)        /opt/Autodesk/wiretapgateway/cfg/wiretapgateway.cfg                                   
+TCP          7184          x                  Wiretap Gateway (data)         /opt/Autodesk/wiretapgateway/cfg/wiretapgateway.cfg                                   
+UDP          7555          x           x      Wiretap Service Discovery      /opt/Autodesk/cfg/network.cfg                                                         
+
+TCP          7533          x           x      PostgreSQL server              /var/opt/Autodesk/pgsql/17/data/postgresql.conf                                       
+TCP          7700          x     x     x      DLmpd                                                                                                                
+
+UDP          32768-60999   x     x     x      Dynamic UDP Ports                                                                     See note below                 
+TCP          32768-60999   x     x     x      Dynamic TCP Ports                                                                     See note below                 
+
+Note: Dynamic ports are opened on-demand by Wiretap clients to receive progress reporting and other events from Wiretap services, namely Backburner, IFFFS Wiretap Server, and Wiretap Gateway. The range defined in /opt/Autodesk/cfg/network.cfg, typically spanning from 49152 to 65535, is used by IFFFS Wiretap Server and Wiretap Gateway. On Linux, this range can be further limited by editing /proc/sys/net/ipv4/ip_local_port_range. Backburner services use this setting directly.
+*These columns indicate whether the port applies to the firewall rules of creative workstations (F), Burn nodes (B), or Project Servers (PS). Use this information to configure firewalls or security groups for the appropriate systems, ensuring proper communication between them.

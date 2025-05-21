@@ -115,7 +115,7 @@ echo "# ------------------------------------------------------------------------
 echo LICENSING ENVIRONMENT
 echo "# -------------------------------------------------------------------------- #"
 
-license_server=license.server-at.studio
+license_server=10.10.120.50
 
 export foundry_LICENSE=4101@$license_server #default
 export neatlab_LICENSE=25053@$license_server

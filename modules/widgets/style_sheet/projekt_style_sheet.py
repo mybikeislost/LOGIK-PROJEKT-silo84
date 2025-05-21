@@ -1,10 +1,10 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,15 +26,15 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
 
 # File Name:        projekt_style_sheet.py
-# Version:          1.9.9
+# Version:          2.0.0
 # Created:          2024-01-19
-# Modified:         2024-12-25
+# Modified:         2024-12-31
 
 # ========================================================================== #
 # This section defines the stylesheet for the main application.
@@ -43,11 +43,11 @@
 def adjust_color_brightness(color, factor):
     """
     Adjust the brightness of a hex color.
-    
+   
     Args:
         color (str): The hex color string (e.g., '#4D0000').
         factor (float): The factor by which to adjust the brightness (e.g., 1.1 for 10% brighter, 0.8 for 20% darker).
-    
+   
     Returns:
         str: The adjusted hex color string.
     """
@@ -245,12 +245,12 @@ QPushButton:pressed {{
 
 def apply_stylesheet(app, stylesheet):
     app.setStyleSheet(stylesheet)
-    
+   
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
@@ -277,7 +277,11 @@ def apply_stylesheet(app, stylesheet):
 # modified:         2024-08-31 - 16:51:10
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
-# Version:          1.9.9
+# version:          1.9.9
 # modified:         2024-12-25 - 09:50:19
 # comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+# version:          2.0.0
+# modified:         2024-12-31 - 10:35:46
+# comments:         Improved legibility and minor modifications
 # -------------------------------------------------------------------------- #

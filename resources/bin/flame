@@ -31,8 +31,8 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        flame
-# Version:          0.0.1
-# Created:          2024-11-03
+# Version:          0.0.2
+# Created:          2025-04-02
 # Modified:         
 
 # -------------------------------------------------------------------------- #
@@ -51,6 +51,7 @@ export flame_version=$(cat $PROJEKT_PATH/software/etc/flame_version)
 if [[ $PROJEKT_OS == "mac" ]]; 
 then 
     export flame_app_bin=/opt/Autodesk/flame_$flame_version/bin/startApplication
+    export DL_PYTHON_HOOK_PATH="/Volumes/PROJEKTS/development/PROJEKT-DEVELOPMENT/dev/projekt_core_v0.0.1"
 
 fi
 
@@ -58,8 +59,12 @@ if [[ $PROJEKT_OS == "lin" ]];
 then 
     # local install
     export flame_app_bin=/opt/Autodesk/flame_$flame_version/bin/startApplication
+    export DL_PYTHON_HOOK_PATH="/PROJEKTS/development/PROJEKT-DEVELOPMENT/dev/projekt_core_v0.0.1"
 
 fi
+
+
+
 
 # ========================================================================== #
 # This section prints the help for the Flame command
@@ -76,7 +81,6 @@ export DL_STARTUP_LIBS_CLOSED=1
 
 # enable to set the python hook path inside the projekt...
 # DL_PYTHON_HOOK_PATH=$PROJEKT_PATH/software/flame/python
-
 
 # -------------------------------------------------------------------------- #
 # /opt/Autodesk/flame_2025.1.2/bin/startApplication --help

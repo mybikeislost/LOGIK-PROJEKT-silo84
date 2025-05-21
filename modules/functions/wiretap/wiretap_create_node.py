@@ -1,10 +1,10 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,15 +26,15 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
 
 # File Name:        wiretap_create_node.py
-# Version:          1.0.0
+# Version:          2.0.0
 # Created:          2024-01-19
-# Modified:         2024-12-25
+# Modified:         2024-12-31
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+   
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -86,8 +86,10 @@ def get_resource_path(relative_path):
 
 # Set the path to the 'modules' directory
 modules_dir = get_resource_path('modules')
+
 # Set the path to the 'resources' directory
 resources_dir = get_resource_path('resources')
+
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
@@ -188,8 +190,8 @@ separator = '# ' + '-' * 75 + ' #'
 # This section defines the primary functions for the script.
 # ========================================================================== #
 
-# def run_wiretap_create_node(projekt_xml_path, the_projekt_flame_name):
-def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator):
+# def run_wiretap_create_node_legacy(projekt_xml_path, the_projekt_flame_name):
+def run_wiretap_create_node_legacy(the_projekt_flame_name, projekt_xml_path, separator):
     """
     Create the logik projekt flame project node using wiretap_create_node.
     """
@@ -223,7 +225,7 @@ def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
     # ---------------------------------------------------------------------- #
 
     # THIS IS THE COMMAND FOR 2025
-    
+
     # Create a logik projekt flame project node using wiretap
     /opt/Autodesk/wiretap/tools/current/wiretap_create_node \\
     -n /volumes/stonefs \\
@@ -259,20 +261,81 @@ def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
     # print(f"  Command errors:\n")
     # print(stderr.decode())
 
+# def run_wiretap_create_node(projekt_xml_path, the_projekt_flame_name):
+def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator):
+    """
+    Create the logik projekt flame project node using wiretap_create_node.
+    """
+
+    # separator = '# ' + '-' * 75 + ' #'
+
+    # Create the bash command
+    bash_command = f"""
+
+    # set -ex
+
+    # Set the umask to 0
+    umask 0
+
+    # ---------------------------------------------------------------------- #
+
+    # echo -e "{projekt_xml_path}"
+
+    # ---------------------------------------------------------------------- #
+
+    # Create the logik projekt flame project node using wiretap_create_node
+
+    # -n <parent node ID>
+    # -d <display name>
+    # -t <server-specific node type string (default = NODE)>
+    # [-h <host name or IP address> (default = 127.0.0.1)]
+    # [-s <metadata stream name> (default = none]
+    # [-f <file containing metadata> (default = none)]
+    # [-g <effective group>] (assumes super-user privileges)
+
+    # ---------------------------------------------------------------------- #
+
+    # THIS IS THE COMMAND FOR 2026
+
+    # Create a logik projekt flame project node using wiretap
+    /opt/Autodesk/wiretap/tools/current/wiretap_create_node \\
+    -h 127.0.0.1:IFFFS \\
+    -n /projects \\
+    -t PROJECT \\
+    -d "{the_projekt_flame_name}" \\
+    -s XML \\
+    -f "{projekt_xml_path}"
+
+    # ---------------------------------------------------------------------- #
+    """
+
+    print(f"  Running the following bash command:")
+    print(f"{bash_command}")
+
+    # Run the bash command
+    process = subprocess.Popen(bash_command, shell=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+
+    print(f"  Command output:\n")
+    print(stdout.decode())
+    # print(f"  Command errors:\n")
+    # print(stderr.decode())
+
 # ========================================================================== #
 # This section defines how to handle the main script function.
 # ========================================================================== #
 
 if __name__ == "__main__":
     # Example usage
-    # run_wiretap_create_node(projekt_xml_path, the_projekt_flame_name)
+    # run_wiretap_create_node_legacy(projekt_xml_path, the_projekt_flame_name)
+    run_wiretap_create_node_legacy(the_projekt_flame_name, projekt_xml_path, separator)
     run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
@@ -299,7 +362,11 @@ if __name__ == "__main__":
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
-# version:          1.0.0
+# version:          1.9.9
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+# version:          2.0.0
+# modified:         2024-12-31 - 10:35:38
+# comments:         Improved legibility and minor modifications
 # -------------------------------------------------------------------------- #

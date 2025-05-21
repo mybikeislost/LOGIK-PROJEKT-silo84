@@ -1,10 +1,10 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,15 +26,15 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
 
 # File Name:        create_launch_script.py
-# Version:          1.9.9
+# Version:          2.0.0
 # Created:          2024-01-19
-# Modified:         2024-12-25
+# Modified:         2024-12-31
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+   
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -86,8 +86,10 @@ def get_resource_path(relative_path):
 
 # Set the path to the 'modules' directory
 modules_dir = get_resource_path('modules')
+
 # Set the path to the 'resources' directory
 resources_dir = get_resource_path('resources')
+
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
@@ -202,7 +204,7 @@ def create_projekt_flame_launcher_script(
         the_software_version,  # This is unique for this function
         separator,
     ):
-    
+   
     # Nested function to generate backup filename with current date
     def generate_backup_filename(filepath):
         # Get the current date
@@ -277,7 +279,7 @@ def create_projekt_flame_launcher_script(
         shutil.move(tgt_launcher_script, backup_filename)
 
     shutil.copy(src_launcher_template, tgt_launcher_script)
-    
+   
     print(f"  Successfully copied PROJEKT flame launcher template to:\n")
     print(f"  {os.path.basename(backup_filename)}")
     print("\n" + separator + "\n")
@@ -289,6 +291,19 @@ def create_projekt_flame_launcher_script(
     os.chmod(tgt_launcher_script, 0o755)
 
     # the_timestamp = f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+
+    # if the_software_version contains 'flame' set app_starter to 'startFlame',
+    if 'flame' in the_software_version:
+        app_starter = 'startFlame'
+    # if the_software_version contains 'flare' set app_starter to 'startFlare',
+    elif 'flare' in the_software_version:
+        app_starter = 'startFlare'
+    # if the_software_version contains 'assist' set app_starter to 'startFlameAssist'
+    elif 'assist' in the_software_version:
+        app_starter = 'startFlameAssist'
+    # if the_software_version contains 'project' set app_starter to 'startProjectServer'
+    elif 'project' in the_software_version:
+        app_starter = 'startProjectServer'
 
     # Set the search and replace strings
     search_replace = {
@@ -303,7 +318,8 @@ def create_projekt_flame_launcher_script(
         "LogikProjektFlameDirectories": f"{the_projekt_flame_dirs}",
         "LogikProjektFlameDirectory": f"{the_projekt_flame_dir_path}",
         "FlameFirstRunName": f"{the_projekt_name}-flame_first_run-{the_hostname}.log",
-        "FlameSoftwareVersion": f"{the_software_version}"
+        "FlameSoftwareVersion": f"{the_software_version}",
+        "ApplicationStarter": f"{app_starter}"
     }
 
     # Modify the script file with the search and replace dictionary
@@ -340,10 +356,10 @@ if __name__ == "__main__":
     main()
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
@@ -370,7 +386,11 @@ if __name__ == "__main__":
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
-# Version:          1.9.9
-# modified:         2024-12-25 - 09:50:12
+# version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+# version:          2.0.0
+# modified:         2024-12-31 - 10:35:28
+# comments:         Improved legibility and minor modifications
 # -------------------------------------------------------------------------- #

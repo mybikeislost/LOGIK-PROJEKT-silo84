@@ -1,0 +1,61 @@
+This document lists the network ports required for the Flame Family ecosystem to function properly. Use this information to configure firewalls or cloud security groups. There are two categories of network ports:
+
+Ports opened by Autodesk services;
+Ports opened by system services the ecosystem relies on.
+
+
+Autodesk Services
+Name	Protocol	Port Range	F*	B*	PS*	Notes	Configuration
+Backburner Manager	TCP & UDP	3234	x		x		/opt/Autodesk/backburner/Network/backburner.xml
+Backburner Manager	UDP	30000	x		x		
+Backburner Manager (nodes)	TCP	7347	x		x		/opt/Autodesk/backburner/cfg/wiretap.cfg
+Backburner Manager (data)	TCP	7348	x		x		/opt/Autodesk/backburner/cfg/wiretap.cfg
+Backburner Server 7-0	TCP	3226-3233	x	x			/opt/Autodesk/backburner/Network-#/backburner.xml
+DLmpd	TCP	7700	x	x	x		
+IFFFS Wiretap Server (nodes)	TCP	7549	x		x		/opt/Autodesk/wiretap/cfg/wiretapd.cfg
+IFFFS Wiretap Server (data)	TCP	7550	x				/opt/Autodesk/wiretap/cfg/wiretapd.cfg
+PostgreSQL server	TCP	7533	x		x		/var/opt/Autodesk/pgsql/17/data/postgresql.conf
+S+W Bandwidth Manager	TCP	7428	x		x	Pre-2026 only	/opt/Autodesk/sw/cfg/sw_bwmgr.cfg
+S+W DB Daemon (sw_dbd)	TCP	7261				Pre-2026 only, local	/opt/Autodesk/sw/cfg/sw_dbd.cfg
+S+W Priority Locking	TCP	8244	x		x		
+S+W Probed	TCP	7001	x	x	x	Pre-2026 backward compatibility	/opt/Autodesk/sw/cfg/sw_probed.cfg
+S+W Probed Multicast	UDP	7001	x	x	x	Pre-2026 backward compatibility	/opt/Autodesk/sw/cfg/sw_probed.cfg
+S+W Server	TCP	7000	x		x	Pre-2026 only	/opt/Autodesk/sw/cfg/sw_serverd.cfg
+Wiretap Gateway (nodes)	TCP	7183	x				/opt/Autodesk/wiretapgateway/cfg/wiretapgateway.cfg
+Wiretap Gateway (data)	TCP	7184	x				/opt/Autodesk/wiretapgateway/cfg/wiretapgateway.cfg
+Wiretap Service Discovery	UDP	7555	x		x		/opt/Autodesk/cfg/network.cfg
+Dynamic UDP Ports	UDP	32768-60999	x	x	x	See note below	
+Dynamic TCP Ports	TCP	32768-60999	x	x	x	See note below	
+Note: Dynamic ports are opened on-demand by Wiretap clients to receive progress reporting and other events from Wiretap services, namely Backburner, IFFFS Wiretap Server, and Wiretap Gateway. The range defined in /opt/Autodesk/cfg/network.cfg, typically spanning from 49152 to 65535, is used by IFFFS Wiretap Server and Wiretap Gateway. On Linux, this range can be further limited by editing /proc/sys/net/ipv4/ip_local_port_range. Backburner services use this setting directly.
+*These columns indicate whether the port applies to the firewall rules of creative workstations (F), Burn nodes (B), or Project Servers (PS). Use this information to configure firewalls or security groups for the appropriate systems, ensuring proper communication between them.
+
+
+
+System Services
+Name	Protocol	Port Range	F*	B*	PS*	Notes
+DNS-SD	UDP	5353	x	x	x	
+NFS	TCP	2049	x		x	NFS
+RPC mountd	TCP & UDP	20048	x		x	NFS
+RPC Portmapper	TCP & UDP	111	x		x	NFS
+*These columns indicate whether the port applies to the firewall rules of creative workstations (F), Burn nodes (B), or Project Servers (PS). Use this information to configure firewalls or security groups for the appropriate systems, ensuring proper communication between them.
+
+
+
+Common Third-Party Ports
+These are ports opened by third-party softwares commonly used with Flame Family products. This is not an exhaustive list. It is provided for convenience to help you configure your firewall. Refer to the vendor's documentation for up-to-date information.
+
+Name	Protocol	Port Range	Notes
+Amazon DCV	TCP & UDP	8443	
+AWS Transit Gateway	IGMP2	all	IGMPv2 auto-discovery, see note below
+AWS Transit Gateway	UDP	0-65535	Inbound multicast traffic
+HP Anyware (PCoIP)	TCP & UDP	4172	
+HP Anyware (PCoIP)	TCP	60443	
+HP Anywhare (Authentication)	TCP	443	
+ping	ICMP	n/a	
+SSH	TCP	22	
+Note: IGMPv2 auto-discovery also requires specific outbound rules:
+Name	Protocol	Port Range	Destination CIDR
+IGMP join	IGMP2	all	239.0.0.1/32
+IGMP leave	IGMP2	all	224.0.0.2/32
+Outbound multicast traffic	UDP	0-65535	239.0.0.1/32
+Ref: AWS Transit Gateway Multicast Routing, Amazon DCV, HP Anyware

@@ -1,10 +1,10 @@
 #!/bin/bash
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,14 +26,14 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
 
 # File Name:        update_changelist_info.sh
-# Version:          0.0.0
-# Modified:         2024-08-22
+# Version:          2.0.0
+# Modified:         2024-12-31
 
 # set -ex
 
@@ -65,26 +65,32 @@ now_underscore=$(date +%H_%M)
 # This section locates the running script and the related directories.
 # ========================================================================== #
 
-# Get the directory of the script
+# Get the name of the running script
+script_name=$(basename "$0")
+
+# Get the directory of the running script
 script_dir="$(dirname "$0")"
 
-# Change directory to script_dir
-cd "$script_dir" || exit
+# Set the app_rel_dir (two levels up from the script directory)
+app_rel_dir="$script_dir/../.."
+
+# Set the app_dir to the absolute path of the app_rel_dir
+app_dir=$(cd "$app_rel_dir" && pwd)
+
+# Change to the app_dir
+cd "$app_dir" || exit
+
+# Set the modules_dir
+modules_dir="$app_dir/modules"
+
+# Set the version_dir
+version_dir="$modules_dir/version"
+
+# echo $app_dir
+# echo $modules_dir
+# echo $version_dir
 
 # -------------------------------------------------------------------------- #
-
-# Get the parent directory
-parent_dir="$(dirname "$script_dir")"
-
-# Change directory to script_dir
-cd "$parent_dir" || exit
-
-# -------------------------------------------------------------------------- #
-
-# Define version_dir
-version_dir="$parent_dir/../modules/version"
-
-echo $version_dir
 
 # Check if the directory exists or create it
 if [ ! -d "$version_dir" ]; then
@@ -144,14 +150,14 @@ echo -e "\n$separator\n"
 # Update version information based on user input
 case $update_type in
     1)  ((major++));;
-    2)  
+    2) 
         ((minor++))
         if [ "$minor" -eq 10 ]; then
             minor=0
             ((major++))
         fi
         ;;
-    3)  
+    3) 
         ((patch++))
         if [ "$patch" -eq 10 ]; then
             patch=0
@@ -207,7 +213,7 @@ change_comments="${change_comments:0:56}"
 
 # Directory containing logik projekt python scripts.
 # scripts_dir="$parent_dir/../testing"  # For testing purposes
-scripts_dir="$parent_dir/../modules"  # For production
+scripts_dir="$modules_dir"  # For production
 
 # Check if the directory exists or create it
 if [ ! -d "$scripts_dir" ]; then
@@ -252,10 +258,10 @@ for function_script in $function_scripts; do
 done
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
@@ -281,4 +287,12 @@ done
 # version:          0.9.9
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
+# -------------------------------------------------------------------------- #
+# version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
+# comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+# version:          2.0.0
+# modified:         2024-12-31 - 10:30:16
+# comments:         Fixed pathing issues
 # -------------------------------------------------------------------------- #
